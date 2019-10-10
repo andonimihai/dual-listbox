@@ -16,6 +16,7 @@
         "@babel/preset-env": "latest",
         "autoprefixer": "latest",
         "babel-loader": "latest",
+        "cross-env": "^6.0.3",
         "cssnano": "latest",
         "del": "latest",
         "gulp": "latest",
@@ -49,7 +50,8 @@
         "webpack-stream": "latest"
     },
     "scripts": {
-        "test": "gulp lint && gulp test"
+        "test": "gulp lint && gulp test",
+        "build": "cross-env NODE_ENV=production gulp build"
     },
     "repository": {
         "type": "git",

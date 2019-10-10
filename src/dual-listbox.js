@@ -49,6 +49,8 @@ class DualListbox {
         this.availableTitle = 'Available options';
         this.selectedTitle = 'Selected options';
 
+        this.showListHeader = true;
+
         this.showAddButton = true;
         this.addButtonText = 'add';
 
@@ -325,7 +327,9 @@ class DualListbox {
      */
     _createList(header, list) {
         let result = document.createElement('div');
-        result.appendChild(header);
+        if (this.showListHeader) {
+            result.appendChild(header);
+        }
         result.appendChild(list);
         return result;
     }

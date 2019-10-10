@@ -1,5 +1,4 @@
 const argv = require('yargs').argv;
-const nodeExternals = require('webpack-node-externals');
 const paths = require('./build/paths');
 
 
@@ -18,10 +17,6 @@ module.exports = {
         libraryTarget: 'umd',
         path: __dirname + '/' + paths.output
     },
-
-    // Use externals (don't bundle dependencies).
-    externals: [nodeExternals()],
-    target: 'node',
 
     // Use --production to optimize output.
     mode: isProduction ? 'production' : 'development',
