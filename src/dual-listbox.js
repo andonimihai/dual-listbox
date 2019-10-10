@@ -348,19 +348,19 @@ class DualListbox {
         this.buttons.classList.add(BUTTONS_ELEMENT);
 
         this.add_all_button = document.createElement('button');
-        this.add_all_button.classList.add(BUTTON_ELEMENT, this.addAllButtonClass);
+        this.add_all_button.classList.add(BUTTON_ELEMENT, ...this.addAllButtonClass.split(' '));
         this.add_all_button.innerHTML = this.addAllButtonText;
 
         this.add_button = document.createElement('button');
-        this.add_button.classList.add(BUTTON_ELEMENT, this.addButtonClass);
+        this.add_button.classList.add(BUTTON_ELEMENT, ...this.addButtonClass.split(' '));
         this.add_button.innerHTML = this.addButtonText;
 
         this.remove_button = document.createElement('button');
-        this.remove_button.classList.add(BUTTON_ELEMENT, this.removeButtonClass);
+        this.remove_button.classList.add(BUTTON_ELEMENT, ...this.removeButtonClass.split(' '));
         this.remove_button.innerHTML = this.removeButtonText;
 
         this.remove_all_button = document.createElement('button');
-        this.remove_all_button.classList.add(BUTTON_ELEMENT, this.removeAllButtonClass);
+        this.remove_all_button.classList.add(BUTTON_ELEMENT, ...this.removeAllButtonClass.split(' '));
         this.remove_all_button.innerHTML = this.removeAllButtonText;
 
         if(this.showAddAllButton) {
