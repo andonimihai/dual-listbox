@@ -11,6 +11,8 @@ const SEARCH_ELEMENT = 'dual-listbox__search';
 
 const SELECTED_MODIFIER = 'dual-listbox__item--selected';
 
+require('./dual-listbox');
+
 
 /**
  * Dual select interface allowing the user to select items from a list of provided options.
@@ -53,15 +55,19 @@ class DualListbox {
 
         this.showAddButton = true;
         this.addButtonText = 'add';
+        this.addButtonClass = 'btn btn-primary';
 
         this.showRemoveButton = true;
         this.removeButtonText = 'remove';
+        this.removeButtonClass = 'btn btn-danger';
 
         this.showAddAllButton = true;
         this.addAllButtonText = 'add all';
+        this.addAllButtonClass = 'btn btn-primary';
 
         this.showRemoveAllButton = true;
         this.removeAllButtonText = 'remove all';
+        this.removeAllButtonClass = 'btn btn-danger';
 
         this.searchPlaceholder = 'Search';
     }
@@ -342,19 +348,19 @@ class DualListbox {
         this.buttons.classList.add(BUTTONS_ELEMENT);
 
         this.add_all_button = document.createElement('button');
-        this.add_all_button.classList.add(BUTTON_ELEMENT);
+        this.add_all_button.classList.add(BUTTON_ELEMENT, this.addAllButtonClass);
         this.add_all_button.innerHTML = this.addAllButtonText;
 
         this.add_button = document.createElement('button');
-        this.add_button.classList.add(BUTTON_ELEMENT);
+        this.add_button.classList.add(BUTTON_ELEMENT, this.addButtonClass);
         this.add_button.innerHTML = this.addButtonText;
 
         this.remove_button = document.createElement('button');
-        this.remove_button.classList.add(BUTTON_ELEMENT);
+        this.remove_button.classList.add(BUTTON_ELEMENT, this.removeButtonClass);
         this.remove_button.innerHTML = this.removeButtonText;
 
         this.remove_all_button = document.createElement('button');
-        this.remove_all_button.classList.add(BUTTON_ELEMENT);
+        this.remove_all_button.classList.add(BUTTON_ELEMENT, this.removeAllButtonClass);
         this.remove_all_button.innerHTML = this.removeAllButtonText;
 
         if(this.showAddAllButton) {
