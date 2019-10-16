@@ -141,7 +141,7 @@ class DualListbox {
      * @param dualListbox
      */
     searchLists(searchString, dualListbox) {
-        let items = dualListbox.querySelectorAll(`.${ITEM_ELEMENT}`);
+        let items = dualListbox.querySelectorAll(`.dual-listbox__available .${ITEM_ELEMENT}`);
         let lowerCaseSearchString = searchString.toLowerCase();
 
         for (let i = 0; i < items.length; i++) {
@@ -297,8 +297,8 @@ class DualListbox {
      * @param {Object} listItem
      */
     _addClickActions(listItem) {
-        listItem.addEventListener('dblclick', (event) => this._actionItemDoubleClick(listItem, event));
-        listItem.addEventListener('click', (event) => this._actionItemClick(listItem, this.dualListbox, event));
+        listItem.addEventListener('click', (event) => this._actionItemDoubleClick(listItem, event));
+        // listItem.addEventListener('click', (event) => this._actionItemClick(listItem, this.dualListbox, event));
         return listItem;
     }
 
