@@ -104,6 +104,20 @@ class DualListbox {
         }
     }
 
+    bulkSelectItems(itemsIds) {
+        if (!Array.isArray(itemsIds)) {
+            return false;
+        }
+
+        let itemsToAdd = this.available.filter(el => itemsIds.includes(el.getAttribute('data-id')));
+        if (itemsToAdd.length > 0) {
+            this.selected.push(...itemsToAdd);
+            this.available = this.available.filter(el => !itemsIds.includes(el.getAttribute('data-id')));
+            this._selectOptions(itemsIds);
+            this.redraw();
+        }
+    }
+
     /**
      * Redraws the Dual listbox content
      */
@@ -132,6 +146,26 @@ class DualListbox {
                 this.dualListbox.dispatchEvent(event);
             }, 0);
         }
+    }
+
+
+    bulkRemoveItems(itemsIds) {
+        if (!Array.isArray(itemsIds)) {
+            return false;
+        }
+
+        let itemsToRemove = this.selected.filter(el => itemsIds.includes(el.dataset.id));
+        this.selected = this.selected.filter(el => !itemsIds.includes(el.dataset.id));
+        this.available.push(...itemsToRemove);
+        this._deselectOptions(itemsIds);
+        this.redraw();
+        // let index = this.selected.indexOf(listItem);
+        // if (index > -1) {
+        //     this.selected.splice(index, 1);
+        //     this.available.push(listItem);
+        //     this._deselectOption(listItem.dataset.id);
+        //     this.redraw();
+        // }
     }
 
     /**
@@ -425,6 +459,21 @@ class DualListbox {
         }
     }
 
+    _deselectOptions(ids) {
+        if (!Array.isArray(ids)) {
+            return false;
+        }
+        
+        let options = this.select.options;
+        for (let i = 0; i < options.length; i++) {
+            let option = options[i];
+            if (ids.includes(option.value)) {
+                option.selected = false;
+                option.removeAttribute('selected');
+            }
+        }
+    }
+
     /**
      * @Private
      * Set the option variables to this.
@@ -491,6 +540,27 @@ class DualListbox {
         }
     }
 
+    /**
+     * @Private
+     * Selects the option with the matching value
+     *
+     * @param {Object} value
+     */
+    _selectOptions(values) {
+        if (!Array.isArray(values)) {
+            return false;
+        }
+
+        let options = this.select.options;
+
+        for (let i = 0; i < options.length; i++) {
+            let option = options[i];
+            if (values.includes(option.value)) {
+                option.selected = true;
+                option.setAttribute('selected', '');
+            }
+        }
+    }
     /**
      * @Private
      * Splits the options and places them in the correct list.
