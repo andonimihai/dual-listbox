@@ -173,7 +173,10 @@ class DualListbox {
 
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
-            if (item.textContent.toLowerCase().indexOf(lowerCaseSearchString) === -1) {
+            if (
+                item.textContent.toLowerCase().indexOf(lowerCaseSearchString) === -1 &&
+                String(item.dataset.id).toLocaleLowerCase().indexOf(lowerCaseSearchString) === -1
+            ) {
                 item.style.display = 'none';
             } else {
                 item.style.display = 'list-item';
