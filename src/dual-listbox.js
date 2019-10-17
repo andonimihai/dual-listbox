@@ -159,13 +159,6 @@ class DualListbox {
         this.available.push(...itemsToRemove);
         this._deselectOptions(itemsIds);
         this.redraw();
-        // let index = this.selected.indexOf(listItem);
-        // if (index > -1) {
-        //     this.selected.splice(index, 1);
-        //     this.available.push(listItem);
-        //     this._deselectOption(listItem.dataset.id);
-        //     this.redraw();
-        // }
     }
 
     /**
@@ -225,6 +218,18 @@ class DualListbox {
         while (list.firstChild) {
             list.removeChild(list.firstChild);
         }
+
+        elements.sort((a,b) => {
+            let aId = a.dataset.id;
+            let bId = b.dataset.id;
+            if (!isNaN(aId) && !isNaN(bId)) {
+                return aId - bId;
+            }
+
+            if(aId < bId) { return -1; }
+            if(aId > bId) { return 1; }
+            return 0;
+        });
 
         for (let i = 0; i < elements.length; i++) {
             let listItem = elements[i];
@@ -463,7 +468,7 @@ class DualListbox {
         if (!Array.isArray(ids)) {
             return false;
         }
-        
+
         let options = this.select.options;
         for (let i = 0; i < options.length; i++) {
             let option = options[i];
